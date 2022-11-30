@@ -6,12 +6,18 @@
 resource(pizarronutc, image, image('whiteBack.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
 resource(li, image, image('comprarPC.jpg')).
 resource(descripcion, image, image('descripcion.jpg')).
-imagen_portada(Pantalla, Imagen) :- new(Figura, figure),                  %variables y funciones que se utilizan para que se pueda visualizar la imagen mediante la  interfaz grafica
+
+agregar_imagen(Pantalla, Imagen, X, Y):-new(Figura, figure),                  %variables y funciones que se utilizan para que se pueda visualizar la imagen mediante la  interfaz grafica con posición arbitraria
                                      new(Bitmap, bitmap(resource(Imagen),@on)),
                                      send(Bitmap, name, 1),
                                      send(Figura, display, Bitmap),
                                      send(Figura, status, 1),
-                                     send(Pantalla, display,Figura,point(0,0)).
+                                     send(Pantalla, display,Figura,point(X,Y)).
+
+imagen_portada(Pantalla, Imagen) :- agregar_imagen(Pantalla, Imagen, 0, 0).
+% Función inicial de portada, pero especificando la posición inicial
+
+
 
 
 
