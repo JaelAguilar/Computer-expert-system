@@ -1,6 +1,6 @@
 :-use_module(library(pce)). % libreria para que se muestre la interfaz
 :-use_module(library(pce_style_item)).% se ocupa para estilos de letra y colores
-:-pce_image_directory('./imagen1'). % acceso a donde se tiene guardada la carpeta de la imagen
+:-pce_image_directory('./images'). % acceso a donde se tiene guardada la carpeta de la imagen
 :- dynamic color/2. %Numero de colores que se utilizan
 resource(pizarronutc, image, image('pizarronutc.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
 resource(li, image, image('li.jpg')).
@@ -126,7 +126,7 @@ resultado(ingenieria_de_sistemas):-ingenieria_de_sistemas,!.
 resultado(turismo):-turismo,!.
 resultado(contabilidad):-contabilidad,!.
 resultado(administracion):-administracion,!.
-resultado(dise�o):-dise�o,!.
+resultado(diseno):-diseno,!.
 resultado(derecho):-derecho,!.
 resultado(pedagogia):-pedagogia,!.
 resultado(no_se_encontro_ninguna_carrera_adecuada_para_ti).
@@ -163,7 +163,7 @@ administracion:-carrera_administracion,
 	consultar('�Tienes capacidad de planificar?'),
 	consultar('�Te interesaria aprender ingles?').
 
-dise�o:-carrera_dise�o,
+diseno:-carrera_diseno,
          consultar('�Eres creativo?'),
 	consultar('�Eres bueno dibujando?'),
 	consultar('�Te gusta dise�ar arquitecturas artisticas?'),
@@ -181,7 +181,7 @@ pedagogia:-carrera_pedagogia,
        consultar('�Te gusta el aprendizaje didactico?'),
        consultar('�Te agrada las actividades recreativas?'),
        consultar('�Te gustaria crear modelos educativos que mejore la ense�anza de los profesores?'),
-       consultar('�Te gustaria dise�ar material didactico?'),
+       consultar('�Te gustaria diseñar material didactico?'),
        consultar('�te interesa la psicologia educativa?').
 
 
@@ -194,9 +194,9 @@ carrera_ingenieria_de_sistemas:-consultar('�Eres h�bil resolviendo problemas
 carrera_turismo:-consultar('�Tienes interes por otras culturas?'),!.
 carrera_contabilidad:-consultar('�Te gustaria trabajar en un Banco?'),!.
 carrera_administracion:-consultar('�Eres bueno en la comunicacion continua?'),!.
-carrera_dise�o:-consultar('�Eres creativo?'),!.
-carrera_derecho:-consultar('�Tienes facilidad para argumentar?'),!.
-carrera_pedagogia:-consultar('�Te gusta el aprendizaje didactico?'),!.
+carrera_diseno:-consultar('¿Eres creativo?'),!.
+carrera_derecho:-consultar('¿Tienes facilidad para argumentar?'),!.
+carrera_pedagogia:-consultar('¿Te gusta el aprendizaje didactico?'),!.
 
 
 
