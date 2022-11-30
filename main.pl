@@ -3,7 +3,7 @@
 :-use_module(library(pce_style_item)).% se ocupa para estilos de letra y colores
 :-pce_image_directory('./images'). % acceso a donde se tiene guardada la carpeta de la imagen
 :- dynamic color/2. %Numero de colores que se utilizan
-resource(pizarronutc, image, image('whiteBackground.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
+resource(pizarronutc, image, image('whiteBack.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
 resource(li, image, image('comprarPC.jpg')).
 resource(descripcion, image, image('descripcion.jpg')).
 imagen_portada(Pantalla, Imagen) :- new(Figura, figure),                  %variables y funciones que se utilizan para que se pueda visualizar la imagen mediante la  interfaz grafica
@@ -91,13 +91,13 @@ send(D,append(Boton3)),
 
 
 principal:-
-	new(D2, dialog('SISTEMA EXPERTO UTC',size(500,400))), %inicio de nuestra interfaz emergente
+	new(D2, dialog('SISTEMA EXPERTO PC',size(500,400))), %inicio de nuestra interfaz emergente
 	new(Label10, label(nombre,'')),send(Label10,colour,red),%color de texto de la variable D2
 
         imagen_portada(D2, pizarronutc), % carga de imagen
 
 
-	new(@texto,label(text,'                                            Una vez finalizado el TEST podras ver los resultados:')),
+	new(@texto,label(text,'                                            Podrás ver aquí tu resultado cuando respondas las preguntas')),
 		new(@respl,label(text,'')),
 	new(Salir,button('Salir',and(message(D2,destroy),message(D2,free)))),
 
@@ -106,14 +106,14 @@ principal:-
 
 %creaci�n del boton para dar inicio al TEST.
 
-	new(@boton,button('Da click si estas listo',message(@prolog,botones))),
+	new(@boton,button('INICIO',message(@prolog,botones))),
 
 	send(D2, append(Label10)),
-	new(@btncarrera,button('�analisis?')), %boton para iniciar el test
+	new(@btncarrera,button('analisis?')), %boton para iniciar el test
         send(D2, display,Label10,point(10,20)), %mostrar el contenido de nuestra ventana
 	send(D2, display,@boton,point(310,80)), %numeros ajustan las posiciones del  boton
 	send(D2, display,@texto,point(50,40)),
-	send(D2, display,Salir,point(340,330)),
+	send(D2, display,Salir,point(350,330)),
 	send(D2, display,@respl,point(90,90)),
 	send(D2,open_centered).                 %fin de la funcion
 
@@ -186,7 +186,7 @@ pedagogia:-carrera_pedagogia,
        consultar('�te interesa la psicologia educativa?').
 
 
-no_se_encontro_ninguna_carrera_adecuada_para_ti:-no_hay_una_carrera.
+no_se_encontro_ninguna_carrera_adecuada_para_ti:- dynamic no_hay_una_carrera.
 
 
 %funcion de corte cada vez que se anula una pregunta de la carrera posteriormente mandara hacia la siguiente
@@ -204,8 +204,8 @@ carrera_pedagogia:-consultar('¿Te gusta el aprendizaje didactico?'),!.
 
 :-dynamic si/1,no/1. %suceptible a generar cambios entre verdadero o falso
 
-preguntar(Problema):-new(A1,dialog('TEST VOCACIONAL')),
-	new(L9,label(texto,'Responde las siguientes preguntas')),
+preguntar(Problema):-new(A1,dialog('Pregunta')),
+	new(L9,label(texto,'Responde la siguiente pregunta')),
 	new(L10,label(text,Problema)),
 
 % crear botones para si y no
@@ -245,7 +245,7 @@ botones:-borrado,
 % resultado de la carrera elegida
 
 resultado(Carrera),
-	send(@texto, selection('                            Hemos analizado sus respuestas y la carrera mas adecuada para ti es:')),
+	send(@texto, selection('Deberías comprar la siguiente computadora:')),
 	send(@respl,selection(Carrera)),
 	new(@boton, button('Iniciar su evaluacion',message(@prolog, botones))),
 	send(Menu, display,@boton,point(40,600)),       %llamando los resultados de la ventana emergente
@@ -297,7 +297,7 @@ main1:-
 	send(D3,open_centered).
 
 main2:-
-new(D4, dialog('SISTEMA EXPERTO UTC',size(500,400))),
+new(D4, dialog('PIA',size(500,400))),
 	new(Label11, label(nombre,'')),send(Label11,colour,red),
 
         imagen_portada(D4, descripcion),
