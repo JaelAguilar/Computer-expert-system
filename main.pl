@@ -122,8 +122,8 @@ principal:-
 
 
 % se muestra la respuesta de tu test que realizaste por medio de las preguntas
-
-resultado(ingenieria_de_sistemas):-ingenieria_de_sistemas,!.
+% Muestra el texto indicado dependiendo de la carrera
+resultado('ingenierO de sistemas'):-ingenieria_de_sistemas,!.
 resultado(turismo):-turismo,!.
 resultado(contabilidad):-contabilidad,!.
 resultado(administracion):-administracion,!.
