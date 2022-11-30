@@ -3,8 +3,8 @@
 :-use_module(library(pce_style_item)).% se ocupa para estilos de letra y colores
 :-pce_image_directory('./images'). % acceso a donde se tiene guardada la carpeta de la imagen
 :- dynamic color/2. %Numero de colores que se utilizan
-resource(pizarronutc, image, image('pizarronutc.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
-resource(li, image, image('li.jpg')).
+resource(pizarronutc, image, image('whiteBackground.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
+resource(li, image, image('comprarPC.jpg')).
 resource(descripcion, image, image('descripcion.jpg')).
 imagen_portada(Pantalla, Imagen) :- new(Figura, figure),                  %variables y funciones que se utilizan para que se pueda visualizar la imagen mediante la  interfaz grafica
                                      new(Bitmap, bitmap(resource(Imagen),@on)),
