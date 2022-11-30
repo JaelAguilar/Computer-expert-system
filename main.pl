@@ -1,3 +1,4 @@
+:- encoding(utf8). % Esto permite agregar acentos y caracteres especiales
 :-use_module(library(pce)). % libreria para que se muestre la interfaz
 :-use_module(library(pce_style_item)).% se ocupa para estilos de letra y colores
 :-pce_image_directory('./images'). % acceso a donde se tiene guardada la carpeta de la imagen
@@ -19,25 +20,25 @@ inicio:- %Inicio de nuestro programa, creando el objeto de dialogo con la variab
 
 
 
- new(D,dialog('SISTEMA EXPERTO UTC',size(800,2350))),% inicio de nuestra interfaz principal
+ new(D,dialog('PIA',size(800,2350))),% inicio de nuestra interfaz principal
 
 
-new(Label1,label(text,'..........................UNIVERSIDAD TRES CULTURAS.......................')),% muestra texto dentro de los label
+new(Label1,label(text,'                    UNIVERSIDAD AUTÓNOMA DE NUEVO LEÓN')),% muestra texto dentro de los label
 
 	send(Label1,colour,red), %sirve para poner los colores en las letras
-new(Label2,label(text,'................................SISTEMAS EXPERTOS...............................')),
+new(Label2,label(text,'               FACULTAD DE INGENIERÍA MECÁNICA Y ELÉCTRICA')),
 	send(Label2,colour,red),
-new(Label3,label(text,'.')),
+new(Label3,label(text,'')),
 	send(Label3,colour,blue),
-new(Label4,label(text,'                          Bienvenido al sistema experto UTC')),
+new(Label4,label(text,'      Sistema experto de decisión de Computadoras')),
 	send(Label4,colour,blue),
-new(Label5,label(text,'Sistema de orientaci�n sobre las carreras que se imparten en la UTC.')),
+new(Label5,label(text,'¿Quieres una computadora y no sabes cuál es la indicada para ti?')),
 	send(Label5,colour,blue),
-new(Label6,label(text,'                       Suerte con las preguntas que te hare!!!')),
+new(Label6,label(text,'                       ¡Nosotros te ayudamos!')),
 	send(Label6,colour,blue),
 new(Label7,label(text,'')),
 	send(Label7,colour,blue),
-new(Label8,label(text,'                                             PROLOG')),
+new(Label8,label(text,'Da click en Iniciar y contesta las preguntas que aparecen en pantalla')),
 	send(Label8,colour,red),
 new(Label9,label(text,'                                  ')),
 	send(Label9,colour,red),
