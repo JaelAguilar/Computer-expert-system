@@ -1,9 +1,10 @@
+% ==== DESCARGA DE MÓDULOS E IMÁGENES ==== %
 :- encoding(utf8). % Esto permite agregar acentos y caracteres especiales
 :-use_module(library(pce)). % libreria para que se muestre la interfaz
 :-use_module(library(pce_style_item)).% se ocupa para estilos de letra y colores
 :-pce_image_directory('./images'). % acceso a donde se tiene guardada la carpeta de la imagen
 :- dynamic color/2. %Numero de colores que se utilizan
-resource(pizarronutc, image, image('whiteBack.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
+resource(pizarronutc, image, image('techWallpaper.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
 resource(li, image, image('comprarPC.jpg')).
 resource(descripcion, image, image('descripcion.jpg')).
 
@@ -16,10 +17,6 @@ agregar_imagen(Pantalla, Imagen, X, Y):-new(Figura, figure),                  %v
 
 imagen_portada(Pantalla, Imagen) :- agregar_imagen(Pantalla, Imagen, 0, 0).
 % Función inicial de portada, pero especificando la posición inicial
-
-
-
-
 
 
 inicio:- %Inicio de nuestro programa, creando el objeto de dialogo con la variable D
@@ -41,17 +38,11 @@ new(Label4,label(text,'      Sistema experto de decisión de Computadoras')),
 new(Label5,label(text,'¿Quieres una computadora y no sabes cuál es la indicada para ti?')),
 	send(Label5,colour,blue),
 new(Label6,label(text,'                       ¡Nosotros te ayudamos!')),
-	send(Label6,colour,blue),
+	send(Label6,colour,green),
 new(Label7,label(text,'')),
 	send(Label7,colour,blue),
 new(Label8,label(text,'Da click en Iniciar y contesta las preguntas que aparecen en pantalla')),
 	send(Label8,colour,red),
-new(Label9,label(text,'                                  ')),
-	send(Label9,colour,red),
-new(Label10,label(text,'                                  ')),
-	send(Label10,colour,red),
-	new(Label12,label(text,'')),
-	send(Label12,colour,blue),
 
 
  %llama a los label y los adjunta para mostrarlos en la ventana principal
@@ -64,10 +55,7 @@ imagen_portada(D, li),
  send(D,append(Label6)),
  send(D,append(Label7)),
  send(D,append(Label8)),
- send(D,append(Label9)),
- send(D,append(Label10)),
- send(D,append(Label12)),
-
+ 
 %crea el boton que almacenamos en nuestra variable para la funcion que se ha programado anteriormente
  new(Boton1,button('Iniciar',and(message(@prolog,principal),
  and(message(D,open),message(D,free))))),
@@ -103,7 +91,7 @@ principal:-
         imagen_portada(D2, pizarronutc), % carga de imagen
 
 
-	new(@texto,label(text,'                                            Podrás ver aquí tu resultado cuando respondas las preguntas')),
+	new(@texto,label(text,'Podrás ver aquí tu resultado cuando respondas las preguntas')),
 		new(@respl,label(text,'')),
 	new(Salir,button('Salir',and(message(D2,destroy),message(D2,free)))),
 
@@ -117,10 +105,10 @@ principal:-
 	send(D2, append(Label10)),
 	new(@btncarrera,button('analisis?')), %boton para iniciar el test
         send(D2, display,Label10,point(10,20)), %mostrar el contenido de nuestra ventana
-	send(D2, display,@boton,point(310,80)), %numeros ajustan las posiciones del  boton
-	send(D2, display,@texto,point(50,40)),
-	send(D2, display,Salir,point(350,330)),
-	send(D2, display,@respl,point(90,90)),
+	send(D2, display,@boton,point(500,200)), %Posición boton INICIO
+	send(D2, display,@texto,point(350,150)), %Posición texto 
+	send(D2, display,Salir,point(500,330)),  %Posición botón SALIR
+	send(D2, display,@respl,point(400,200)), %Posición respuesta final
 	send(D2,open_centered).                 %fin de la funcion
 
 
@@ -141,17 +129,17 @@ resultado(no_se_encontro_ninguna_carrera_adecuada_para_ti).
 
 %se declran las variables de cada carrera y despues se colocan las preguntas coreespodientes
 
-
+% ==== CARRERAS SISTEMA ORIGINAL ==== %
 ingenieria_de_sistemas:-carrera_ingenieria_de_sistemas,
 	consultar('�Eres h�bil resolviendo problemas?'),
-	consultar('�Te gusta resolver problemas matem�ticos?'),
+	consultar('¿Te gusta resolver problemas matemáticos?'),
 	consultar('�te interesan temas sobre tecnologia?'),
 	consultar('�Tienes facilidad para ocupar computadoras?'),
 	consultar('�Te gusta crear cosas?').
 
 turismo:-carrera_turismo,
 	consultar('�Tienes interes por otras culturas?'),
-	consultar('�tienes gusto y facilidad por los idiomas?'),
+	consultar('¿Te gusta resolver problemas matemáticos?'),
 	consultar('�Te gusta viajar?'),
 	consultar('�Tienes gusto por el cuidado al patrimonio cultural?'),
 	consultar('�Se te facilita adaptarte al ambiente cultural internacional?').
@@ -289,7 +277,7 @@ main1:-
 
 	send(D3, append(Label10)),
 	send(D3, display,Label10,point(10,20)),
-	send(D3, display,@texto,point(50,40)),
+	send(D3, display,@texto,point(400,400)),
         send(D3, display,@texto1,point(70,70)),
         send(D3, display,@texto2,point(78,82)),
         send(D3, display,@texto3,point(88,94)),
@@ -299,7 +287,7 @@ main1:-
         send(D3, display,@texto7,point(85,230)),
         send(D3, display,@texto8,point(85,245)),
 	send(D3, display,Salir,point(400,400)),
-	send(D3, display,@respl,point(90,90)),
+	send(D3, display,@respl,point(500,500)),
 	send(D3,open_centered).
 
 main2:-
