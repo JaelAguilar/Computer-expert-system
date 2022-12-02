@@ -83,7 +83,7 @@ new(Boton3,button('Carreras',and(message(@prolog,main2),
 	send(D2, display,Salir,point(350,370)),  %Posición botón SALIR
     send(D2,display,Boton1,point(450,370)),
     send(D2,display,Boton3,point(550,370)),
-	send(D2, display,@respl,point(400,200)), %Posición respuesta final
+	send(D2, display,@respl,point(350,200)), %Posición respuesta final
 	send(D2,open_centered).                 %fin de la funcion
 
 
@@ -97,7 +97,7 @@ resultado('Laptop HP ENVY x360 Convertible 13-ay1005la'):-hp_envy_x360,!.
 resultado('HP Desktop One 27-ca0003la'):-hp_desktop_one,!.
 resultado('All in One HP 22-dd0520la'):-all_in_one_hp_22,!.
 resultado('HUAWEI MateBook D 14'):-huawei_matebook,!.
-resultado('Lo sentimos, no encontramos una computadora adecuada para ti').
+resultado('Lo sentimos, no encontramos una computadora\n adecuada para ti').
 
 
 
