@@ -6,24 +6,16 @@
 :- dynamic color/3. %Numero de colores que se utilizan
 resource(pizarronutc, image, image('fondoJuego.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
 resource(li, image, image('fondoInicio.jpg')).
-resource(descripcion, image, image('descripcion.jpg')).
-resource(minion,image,image('minion.jpg')).
 
-agregar_imagen(Pantalla, Imagen, X, Y):-new(Figura, figure),                  %variables y funciones que se utilizan para que se pueda visualizar la imagen mediante la  interfaz grafica con posición arbitraria
+imagen_portada(Pantalla, Imagen):-new(Figura, figure),                  %variables y funciones que se utilizan para que se pueda visualizar la imagen mediante la  interfaz grafica con posición arbitraria
                                      new(Bitmap, bitmap(resource(Imagen),@on)),
                                      send(Bitmap, name, 1),
                                      send(Figura, display, Bitmap),
                                      send(Figura, status, 1),
-                                     send(Pantalla, display,Figura,point(X,Y)).
+                                     send(Pantalla, display,Figura,point(0,0)).
 
-imagen_portada(Pantalla, Imagen) :- agregar_imagen(Pantalla, Imagen, 0, 0).
-% Función inicial de portada, pero especificando la posición inicial
-
-
-inicio:- %Inicio de nuestro programa, creando el objeto de dialogo con la variable D
-
-
- new(D,dialog('PIA',size(500,625))),% inicio de nuestra interfaz pantallaResultado
+inicio:- %Inicio de nuestro programa
+new(D,dialog('PIA',size(500,625))),
 
 
 
@@ -31,24 +23,15 @@ inicio:- %Inicio de nuestro programa, creando el objeto de dialogo con la variab
 imagen_portada(D, li),
  
 %crea el boton que almacenamos en nuestra variable para la funcion que se ha programado anteriormente
- new(Boton1,button('Iniciar',and(message(@prolog,pantallaResultado),
+ new(Biniciar,button('Iniciar',and(message(@prolog,pantallaResultado),
  and(message(D,open),message(D,free))))),
- send(Boton1,colour,blue),
- new(Bcancelar,button('Anular',and(message(D,destroy),message(D,free)))),
+ send(Biniciar,colour,blue),
+ new(Bcancelar,button('Salir',and(message(D,destroy),message(D,free)))),
  send(Bcancelar,colour,blue),
 
-new(Boton3,button('Carreras',and(message(@prolog,main2),
- and(message(D,open),message(D,free))))),
- send(Boton3,colour,blue),
-
- new(Boton4,button('Equipo',and(message(@prolog,main3),
- and(message(D,open),message(D,free))))),
- send(Boton4,colour,blue),
-
 %llamada de los botones para que se muestren en la interfaz
-send(D, display,Boton1,point(100,550)),
+send(D, display,Biniciar,point(100,550)),
 send(D, display,Bcancelar,point(210,550)),
-send(D, display,Boton3,point(320,550)),
   send(D,open_centered).
 
 
@@ -65,12 +48,8 @@ pantallaResultado:-
 		new(@respl,label(text,'')),
 	new(Salir,button('Salir',and(message(D2,destroy),message(D2,free)))),
 
-    new(Boton1,button('Portada',and(message(@prolog,inicio),
+    new(Bportada,button('Portada',and(message(@prolog,inicio),
  and(message(D2,open),message(D2,free))))),
-
-new(Boton3,button('Carreras',and(message(@prolog,main2),
- and(message(D2,open),message(D2,free))))),
-
 
 %creaci�n del boton para dar inicio al TEST.
 
@@ -81,8 +60,7 @@ new(Boton3,button('Carreras',and(message(@prolog,main2),
 
 	send(D2, display,@texto,point(350,170)), %Posición texto 
 	send(D2, display,Salir,point(350,370)),  %Posición botón SALIR
-    send(D2,display,Boton1,point(450,370)),
-    send(D2,display,Boton3,point(550,370)),
+    send(D2,display,Bportada,point(450,370)),
 	send(D2, display,@respl,point(350,200)), %Posición respuesta final
 	send(D2,open_centered).                 %fin de la funcion
 
@@ -226,27 +204,5 @@ resultado(Carrera),
 	send(@respl,selection(Carrera)),
 	limpiar.
 borrado:-send(@respl,selection('')). %fin del programa
-
-main2:-
-new(D4, dialog('PIA',size(500,400))),
-	new(Label11, label(nombre,'')),send(Label11,colour,red),
-
-        imagen_portada(D4, descripcion),
-        new(Salir,button('Salir',and(message(D4,destroy),message(D4,free)))),
-        new(Boton1,button('Pantalla Incio',and(message(@prolog,inicio),and(message(D4,open),message(D4,free))))),
-        new(Boton3,button('De nuevo',and(message(@prolog,pantallaResultado),and(message(D4,open),message(D4,free))))),
-
-        send(D4,display,Boton1,point(350,370)),
-        send(D4,display,Boton3,point(450,370)),
-        send(D4, display,Salir,point(550,370)),
-
-  send(D4,open_centered).
-
-main3:-
-    new(D5,dialog('Equipo', size(800,1000))),
-    imagen_portada(D5,minion),
-    new(Salir,button('Salir',and(message(D5,destroy),message(D5,free)))),
-        send(D5, display,Salir,point(400,400)),
-    send(D5,open_centered).
 
 :-inicio.
