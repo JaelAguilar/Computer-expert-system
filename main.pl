@@ -3,9 +3,8 @@
 :-use_module(library(pce)). % libreria para que se muestre la interfaz
 :-use_module(library(pce_style_item)).% se ocupa para estilos de letra y colores
 :-pce_image_directory('./images'). % acceso a donde se tiene guardada la carpeta de la imagen
-:- dynamic color/3. %Numero de colores que se utilizan
-resource(pizarronutc, image, image('fondoJuego.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
-resource(li, image, image('fondoInicio.jpg')).
+resource(background, image, image('fondoJuego.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
+resource(portada, image, image('fondoInicio.jpg')).
 
 imagen_portada(Pantalla, Imagen):-new(Figura, figure),                  %variables y funciones que se utilizan para que se pueda visualizar la imagen mediante la  interfaz grafica con posición arbitraria
                                      new(Bitmap, bitmap(resource(Imagen),@on)),
@@ -19,11 +18,11 @@ new(D,dialog('PIA',size(500,625))),
 
 
 
- %llama a los label y los adjunta para mostrarlos en la ventana pantallaResultado
-imagen_portada(D, li),
+ %llama a los label y los adjunta para mostrarlos en la ventana main
+imagen_portada(D, portada),
  
 %crea el boton que almacenamos en nuestra variable para la funcion que se ha programado anteriormente
- new(Biniciar,button('Iniciar',and(message(@prolog,pantallaResultado),
+ new(Biniciar,button('Iniciar',and(message(@prolog,main),
  and(message(D,open),message(D,free))))),
  send(Biniciar,colour,blue),
  new(Bcancelar,button('Salir',and(message(D,destroy),message(D,free)))),
@@ -36,17 +35,17 @@ send(D, display,Bcancelar,point(210,550)),
 
 
 
-%llamando a la funcion pantallaResultado de nuestro boton iniciar
+%llamando a la funcion main de nuestro boton iniciar
 
 
-pantallaResultado:-
+main:-
 	new(D2, dialog('SISTEMA EXPERTO PC',size(500,400))), %inicio de nuestra interfaz emergente
-        imagen_portada(D2, pizarronutc), % carga de imagen
+        imagen_portada(D2, background), % carga de imagen
 
 
 	new(@texto,label(text,'')),
 		new(@respl,label(text,'')),
-	new(Salir,button('Salir',and(message(D2,destroy),message(D2,free)))),
+	new(Bsalir,button('Salir',and(message(D2,destroy),message(D2,free)))),
 
     new(Bportada,button('Portada',and(message(@prolog,inicio),
  and(message(D2,open),message(D2,free))))),
@@ -59,7 +58,7 @@ pantallaResultado:-
 	send(D2, display,@boton,point(450,200)), %Posición boton INICIO
 
 	send(D2, display,@texto,point(350,170)), %Posición texto 
-	send(D2, display,Salir,point(350,370)),  %Posición botón SALIR
+	send(D2, display,Bsalir,point(350,370)),  %Posición botón SALIR
     send(D2,display,Bportada,point(450,370)),
 	send(D2, display,@respl,point(350,200)), %Posición respuesta final
 	send(D2,open_centered).                 %fin de la funcion
@@ -86,73 +85,73 @@ resultado('Lo sentimos, no encontramos una computadora\n adecuada para ti').
 
 % ==== COMPUTADORAS NUEVO SISTEMA ==== %
 hp_14_dq2521la:-computadora_laptop_HP_14_dq2521la,
-    consultar('¿Quieres una laptop?'),
-    consultar('¿Quieres que tu computadora sea marca HP?'),
-    consultar('¿Quieres un procesador Intel?'),
-    consultar('¿Quieres un almacenamiento de 256 GB?').
+    revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres que tu computadora sea marca HP?'),
+    revisar('¿Quieres un procesador Intel?'),
+    revisar('¿Quieres un almacenamiento de 256 GB?').
 
 hp_envy_x360:-computadora_laptop_HP_ENVY_x360,
-    consultar('¿Quieres una laptop?'),
-    consultar('¿Quieres que tu computadora sea marca HP?'),
-    consultar('¿Quieres un procesador AMD Ryzen?'),
-    consultar('¿Quieres que tu computadora se pueda doblar como si fuera tablet?'),
-    consultar('¿Quieres que la pantalla sea táctil?'),
-    consultar('¿Quieres que tu computadora tenga un lector de huellas?').
+    revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres que tu computadora sea marca HP?'),
+    revisar('¿Quieres un procesador AMD Ryzen?'),
+    revisar('¿Quieres que tu computadora se pueda doblar como si fuera tablet?'),
+    revisar('¿Quieres que la pantalla sea táctil?'),
+    revisar('¿Quieres que tu computadora tenga un lector de huellas?').
 
 hp_desktop_one:-computadora_hp_desktop_one_21_ca0003la,
-    consultar('¿Quieres una computadora de escritorio?'),
-    consultar('¿Quieres que tu computadora sea marca HP?'),
-    consultar('¿Quieres un procesador AMD Ryzen?'),
-    consultar('¿Quieres que la cámara tenga privacidad cuando no la usas?').
+    revisar('¿Quieres una computadora de escritorio?'),
+    revisar('¿Quieres que tu computadora sea marca HP?'),
+    revisar('¿Quieres un procesador AMD Ryzen?'),
+    revisar('¿Quieres que la cámara tenga privacidad cuando no la usas?').
 
 all_in_one_hp_22:-computadora_all_in_one_hp_22_dd050la,
-    consultar('¿Quieres una computadora de escritorio?'),
-    consultar('¿Quieres que tu computadora sea marca HP?'),
-    consultar('¿Quieres un procesador Intel?'),
-    consultar('¿Quieres que tu computadora sea todo en uno').
+    revisar('¿Quieres una computadora de escritorio?'),
+    revisar('¿Quieres que tu computadora sea marca HP?'),
+    revisar('¿Quieres un procesador Intel?'),
+    revisar('¿Quieres que tu computadora sea todo en uno').
 
 huawei_matebook:-computadora_huawei_matebook_d14,
-    consultar('¿Quieres una laptop?'),
-    consultar('¿Quieres un procesador Intel?'),
-    consultar('¿Quieres un almacenamiento de 512 GB?'),
-    consultar('¿Quieres que la pantalla se pueda desmontar?'),
-    consultar('¿Quieres que la cámara se encuentre al nivel del teclado?').
+    revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres un procesador Intel?'),
+    revisar('¿Quieres un almacenamiento de 512 GB?'),
+    revisar('¿Quieres que la pantalla se pueda desmontar?'),
+    revisar('¿Quieres que la cámara se encuentre al nivel del teclado?').
 gamer_legion_5:-computadora_laptop_gamer_5,
-    consultar('¿Quieres una laptop?'),
-    consultar('¿Quieres un procesador AMD Ryzen?'),
-    consultar('¿Quieres una computadora hecha para videojuegos?'),
-    consultar('¿Quieres que tu computadora tenga control de temperatura'),
-    consultar('¿Quieres que tu computadora tenga sonido 3D?').
+    revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres un procesador AMD Ryzen?'),
+    revisar('¿Quieres una computadora hecha para videojuegos?'),
+    revisar('¿Quieres que tu computadora tenga control de temperatura'),
+    revisar('¿Quieres que tu computadora tenga sonido 3D?').
 macbook_pro:-computadora_mackbook_pro,
-    consultar('¿Quieres una laptop?'),
-    consultar('¿Quieres que tu computadora sea marca Apple?').
+    revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres que tu computadora sea marca Apple?').
 samsung_notebook_9_pro:-computadora_samsung_notebook_9_pro,
-    consultar('¿Quieres una laptop?'),
-    consultar('¿Quieres un procesador Intel?'),
-    consultar('¿Quieres que tu computadora sea 2 en 1?'),
-    consultar('¿Quieres que la pantalla sea táctil?'),
-    consultar('¿Quieres que tu computadora tenga un lector de huellas?'),
-    consultar('¿Quieres que incluya un lápiz táctil?').
+    revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres un procesador Intel?'),
+    revisar('¿Quieres que tu computadora sea 2 en 1?'),
+    revisar('¿Quieres que la pantalla sea táctil?'),
+    revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
+    revisar('¿Quieres que incluya un lápiz táctil?').
 
 
 
 %funcion de corte cada vez que se anula una pregunta de la carrera posteriormente mandara hacia la siguiente
 
 computadora_laptop_HP_14_dq2521la:-
-    consultar('¿Quieres una laptop?'),!.
+    revisar('¿Quieres una laptop?'),!.
 computadora_laptop_HP_ENVY_x360:-
-    consultar('¿Quieres una laptop?'),!.
+    revisar('¿Quieres una laptop?'),!.
 computadora_hp_desktop_one_21_ca0003la:-
-    consultar('¿Quieres una computadora de escritorio?'),!.
+    revisar('¿Quieres una computadora de escritorio?'),!.
 computadora_all_in_one_hp_22_dd050la:-
-    consultar('¿Quieres una computadora de escritorio?'),!.
+    revisar('¿Quieres una computadora de escritorio?'),!.
 computadora_huawei_matebook_d14:-
-    consultar('¿Quieres una laptop?'),!.
+    revisar('¿Quieres una laptop?'),!.
 computadora_laptop_gamer_5:-
-    consultar('¿Quieres una laptop?'),!.
+    revisar('¿Quieres una laptop?'),!.
 computadora_mackbook_pro:-
-    consultar('¿Quieres una laptop?'),!.
-computadora_samsung_notebook_9_pro:-consultar('¿Quieres una laptop?'),!.
+    revisar('¿Quieres una laptop?'),!.
+computadora_samsung_notebook_9_pro:-revisar('¿Quieres una laptop?'),!.
 
 
 
@@ -187,7 +186,7 @@ preguntar(Problema):-new(A1,dialog('Pregunta')),
  assert(no(Problema)),fail).
 
 %cada vez que el usuario contesta una pregunta la pantalla se limpria y se vuelve a preguntar
-consultar(S):-(si(S)->true; (no(S)->fail; preguntar(S))).
+revisar(S):-(si(S)->true; (no(S)->fail; preguntar(S))).
 limpiar:-retract(si(_)),fail.
 limpiar:-retract(no(_)),fail.
 limpiar.
@@ -199,9 +198,9 @@ botones:-borrado,
 
 % resultado de la carrera elegida
 
-resultado(Carrera),
+resultado(Computadora),
 	send(@texto, selection('Deberías comprar la siguiente computadora:')),
-	send(@respl,selection(Carrera)),
+	send(@respl,selection(Computadora)),
 	limpiar.
 borrado:-send(@respl,selection('')). %fin del programa
 
