@@ -1,74 +1,52 @@
 % ==== DESCARGA DE MÓDULOS E IMÁGENES ==== %
-:- encoding(utf8). % Esto permite agregar acentos y caracteres especiales
-:-use_module(library(pce)). % libreria para que se muestre la interfaz
-:-use_module(library(pce_style_item)).% se ocupa para estilos de letra y colores
-:-pce_image_directory('./images'). % acceso a donde se tiene guardada la carpeta de la imagen
-resource(background, image, image('fondoJuego.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
+:- encoding(utf8). 
+:-use_module(library(pce)).
+:-use_module(library(pce_style_item)).
+:-pce_image_directory('./images'). 
+resource(background, image, image('fondoJuego.jpg')). 
 resource(portada, image, image('fondoInicio.jpg')).
 
-imagen_portada(Pantalla, Imagen):-new(Figura, figure),                  %variables y funciones que se utilizan para que se pueda visualizar la imagen mediante la  interfaz grafica con posición arbitraria
+% ==== Función para poner fondo de pantalla en las interfaces ==== %
+imagen_portada(Pantalla, Imagen):-new(Figura, figure),
                                      new(Bitmap, bitmap(resource(Imagen),@on)),
                                      send(Bitmap, name, 1),
                                      send(Figura, display, Bitmap),
                                      send(Figura, status, 1),
                                      send(Pantalla, display,Figura,point(0,0)).
 
-inicio:- %Inicio de nuestro programa
+% ==== INTERFAZ INICIAL ==== %
+iniciar:-
 new(D,dialog('PIA',size(500,625))),
-
-
-
- %llama a los label y los adjunta para mostrarlos en la ventana main
 imagen_portada(D, portada),
- 
-%crea el boton que almacenamos en nuestra variable para la funcion que se ha programado anteriormente
  new(Biniciar,button('Iniciar',and(message(@prolog,main),
  and(message(D,open),message(D,free))))),
- send(Biniciar,colour,blue),
  new(Bcancelar,button('Salir',and(message(D,destroy),message(D,free)))),
- send(Bcancelar,colour,blue),
 
-%llamada de los botones para que se muestren en la interfaz
 send(D, display,Biniciar,point(100,550)),
 send(D, display,Bcancelar,point(210,550)),
   send(D,open_centered).
 
 
-
-%llamando a la funcion main de nuestro boton iniciar
-
-
+% ==== INTERFAZ PRINCIPAL ==== %
 main:-
-	new(D2, dialog('SISTEMA EXPERTO PC',size(500,400))), %inicio de nuestra interfaz emergente
-        imagen_portada(D2, background), % carga de imagen
-
-
+	new(D2, dialog('SISTEMA EXPERTO PC',size(500,400))),
+        imagen_portada(D2, background),
 	new(@texto,label(text,'')),
 		new(@respl,label(text,'')),
 	new(Bsalir,button('Salir',and(message(D2,destroy),message(D2,free)))),
-
-    new(Bportada,button('Portada',and(message(@prolog,inicio),
+    new(Bportada,button('Portada',and(message(@prolog,iniciar),
  and(message(D2,open),message(D2,free))))),
-
-%creaci�n del boton para dar inicio al TEST.
-
 	new(@boton,button('INICIAR',message(@prolog,botones))),
-
-	new(@btncarrera,button('analisis?')), %boton para iniciar el test
-	send(D2, display,@boton,point(450,200)), %Posición boton INICIO
-
-	send(D2, display,@texto,point(350,170)), %Posición texto 
-	send(D2, display,Bsalir,point(350,370)),  %Posición botón SALIR
+	new(@bcomputadora,button('analisis?')), 
+    
+	send(D2, display,@boton,point(450,200)), 
+	send(D2, display,@texto,point(350,170)), 
+	send(D2, display,Bsalir,point(350,370)), 
     send(D2,display,Bportada,point(450,370)),
-	send(D2, display,@respl,point(350,200)), %Posición respuesta final
-	send(D2,open_centered).                 %fin de la funcion
+	send(D2, display,@respl,point(350,200)), 
+	send(D2,open_centered).                
 
-
-
-
-
-% se muestra la respuesta de tu test que realizaste por medio de las preguntas
-% Muestra el texto indicado dependiendo de la carrera
+% ==== Mostrar el texto indicado dependiendo del resultado final ==== %
 resultado('Laptop HP 14 dq2521la'):-hp_14_dq2521la,!.
 resultado('Laptop HP ENVY x360 Convertible 13-ay1005la'):-hp_envy_x360,!.
 resultado('HP Desktop One 27-ca0003la'):-hp_desktop_one,!.
@@ -80,10 +58,7 @@ resultado('Samsung Notebook 9 Pro'):-samsung_notebook_9_pro,!.
 resultado('Lo sentimos, no encontramos una computadora\n adecuada para ti').
 
 
-
-%se declran las variables de cada carrera y despues se colocan las preguntas coreespodientes
-
-% ==== COMPUTADORAS NUEVO SISTEMA ==== %
+% ==== PREGUNTAS DE CADA COMPUTADORA ==== %
 hp_14_dq2521la:-computadora_laptop_HP_14_dq2521la,
     revisar('¿Quieres una laptop?'),
     revisar('¿Quieres que tu computadora sea marca HP?'),
@@ -116,15 +91,18 @@ huawei_matebook:-computadora_huawei_matebook_d14,
     revisar('¿Quieres un almacenamiento de 512 GB?'),
     revisar('¿Quieres que la pantalla se pueda desmontar?'),
     revisar('¿Quieres que la cámara se encuentre al nivel del teclado?').
+
 gamer_legion_5:-computadora_laptop_gamer_5,
     revisar('¿Quieres una laptop?'),
     revisar('¿Quieres un procesador AMD Ryzen?'),
     revisar('¿Quieres una computadora hecha para videojuegos?'),
     revisar('¿Quieres que tu computadora tenga control de temperatura'),
     revisar('¿Quieres que tu computadora tenga sonido 3D?').
+
 macbook_pro:-computadora_mackbook_pro,
     revisar('¿Quieres una laptop?'),
     revisar('¿Quieres que tu computadora sea marca Apple?').
+
 samsung_notebook_9_pro:-computadora_samsung_notebook_9_pro,
     revisar('¿Quieres una laptop?'),
     revisar('¿Quieres un procesador Intel?'),
@@ -135,7 +113,7 @@ samsung_notebook_9_pro:-computadora_samsung_notebook_9_pro,
 
 
 
-%funcion de corte cada vez que se anula una pregunta de la carrera posteriormente mandara hacia la siguiente
+% ==== PRUEBAS DE CADA COMPUTADORA (función de corte) ==== %
 
 computadora_laptop_HP_14_dq2521la:-
     revisar('¿Quieres una laptop?'),!.
@@ -153,23 +131,16 @@ computadora_mackbook_pro:-
     revisar('¿Quieres una laptop?'),!.
 computadora_samsung_notebook_9_pro:-revisar('¿Quieres una laptop?'),!.
 
+% ==== VARIABLES DINÁMICAS ==== %
+:-dynamic si/1,no/1. 
 
-
-
-:-dynamic si/1,no/1. %suceptible a generar cambios entre verdadero o falso
-
+% ==== INTERFAZ DE PREGUNTAS ==== %
 preguntar(Problema):-new(A1,dialog('Pregunta')),
 	new(L9,label(texto,'Responde la siguiente pregunta')),
 	new(L10,label(text,Problema)),
-
-% crear botones para si y no
-
-
 	new(Z1,button(si,and(message(A1,return,si)))),
 	new(Z2,button(no,and(message(A1,return,no)))),
 	send(A1,gap,size(25,25)),
-
-% llamada de los botones y ventanas emergentes
 
 	send(A1,append(L9)),
 	send(A1,append(L10)),
@@ -180,28 +151,27 @@ preguntar(Problema):-new(A1,dialog('Pregunta')),
 	send(A1,open_centered), get(A1,confirm,Answer),
 	 send(A1,destroy),
 
-%confirmacion de respuesta si y no
+% ==== GUARDAR RESPUESTA EN MEMORIA ==== %
 
- (   (Answer==si)->assert(si(Problema)); %confirma las preguntas si es si en confirmacion y si es no erroneo
+ ((Answer==si)->assert(si(Problema));
  assert(no(Problema)),fail).
 
-%cada vez que el usuario contesta una pregunta la pantalla se limpria y se vuelve a preguntar
+% ==== CAMBIO DE PREGUNTA ==== %
 revisar(S):-(si(S)->true; (no(S)->fail; preguntar(S))).
 limpiar:-retract(si(_)),fail.
 limpiar:-retract(no(_)),fail.
 limpiar.
 
-% borrado de la ventana emergente para dar el resultado final
+% ==== BORRADO DE BOTONES INTERFAZ PRINCIPAL ==== %
 botones:-borrado,
 	send(@boton,free),
-	send(@btncarrera,free),
+	send(@bcomputadora,free),
 
-% resultado de la carrera elegida
-
+% ==== RESULTADO FINAL ==== %
 resultado(Computadora),
 	send(@texto, selection('Deberías comprar la siguiente computadora:')),
 	send(@respl,selection(Computadora)),
 	limpiar.
-borrado:-send(@respl,selection('')). %fin del programa
+borrado:-send(@respl,selection('')).
 
-:-inicio.
+:-iniciar. % Inicio de programa principal
