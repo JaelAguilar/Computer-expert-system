@@ -93,82 +93,62 @@ new(Boton3,button('Carreras',and(message(@prolog,main2),
 % se muestra la respuesta de tu test que realizaste por medio de las preguntas
 % Muestra el texto indicado dependiendo de la carrera
 resultado('Laptop HP 14 dq2521la'):-hp_14_dq2521la,!.
-resultado('ingenierO de sistemas'):-ingenieria_de_sistemas,!.
-resultado(turismo):-turismo,!.
-resultado(contabilidad):-contabilidad,!.
-resultado(administracion):-administracion,!.
-resultado(diseno):-diseno,!.
-resultado(derecho):-derecho,!.
-resultado(pedagogia):-pedagogia,!.
-resultado(no_se_encontro_ninguna_carrera_adecuada_para_ti).
+resultado('Laptop HP ENVY x360 Convertible 13-ay1005la'):-hp_envy_x360,!.
+resultado('HP Desktop One 27-ca0003la'):-hp_desktop_one,!.
+resultado('All in One HP 22-dd0520la'):-all_in_one_hp_22,!.
+resultado('HUAWEI MateBook D 14'):-huawei_matebook,!.
+resultado('Lo sentimos, no encontramos una computadora adecuada para ti').
+
 
 
 %se declran las variables de cada carrera y despues se colocan las preguntas coreespodientes
 
 % ==== COMPUTADORAS NUEVO SISTEMA ==== %
-hp_14_dq2521la:-laptop_HP_14_dq2521la,
+hp_14_dq2521la:-computadora_laptop_HP_14_dq2521la,
+    consultar('¿Quieres una laptop?'),
     consultar('¿Quieres que tu computadora sea marca HP?'),
-    consultar('¿Quieres un procesador Intel?')
+    consultar('¿Quieres un procesador Intel?'),
     consultar('¿Quieres un almacenamiento de 256 GB?').
 
+hp_envy_x360:-computadora_laptop_HP_ENVY_x360,
+    consultar('¿Quieres una laptop?'),
+    consultar('¿Quieres que tu computadora sea marca HP?'),
+    consultar('¿Quieres un procesador AMD Ryzen?'),
+    consultar('¿Quieres que tu computadora se pueda doblar como si fuera tablet?'),
+    consultar('¿Quieres que tu computadora tenga un lector de huellas?').
 
-% ==== CARRERAS SISTEMA ORIGINAL ==== %
-ingenieria_de_sistemas:-carrera_ingenieria_de_sistemas,
-	consultar('�Eres h�bil resolviendo problemas?'),
-	consultar('¿Te gusta resolver problemas matemáticos?'),
-	consultar('�te interesan temas sobre tecnologia?'),
-	consultar('�Tienes facilidad para ocupar computadoras?'),
-	consultar('�Te gusta crear cosas?').
+hp_desktop_one:-computadora_hp_desktop_one_21_ca0003la,
+    consultar('¿Quieres una computadora de escritorio?'),
+    consultar('¿Quieres que tu computadora sea marca HP?'),
+    consultar('¿Quieres un procesador AMD Ryzen?'),
+    consultar('¿Quieres que la cámara tenga privacidad cuando no la usas?').
 
-turismo:-carrera_turismo,
-	consultar('�Tienes interes por otras culturas?'),
-	consultar('¿Te gusta resolver problemas matemáticos?'),
-	consultar('�Te gusta viajar?'),
-	consultar('�Tienes gusto por el cuidado al patrimonio cultural?'),
-	consultar('�Se te facilita adaptarte al ambiente cultural internacional?').
+all_in_one_hp_22:-computadora_all_in_one_hp_22_dd050la,
+    consultar('¿Quieres una computadora de escritorio?'),
+    consultar('¿Quieres que tu computadora sea marca HP?'),
+    consultar('¿Quieres un procesador Intel?'),
+    consultar('¿Quieres que tu computadora sea "todo en uno"').
 
-contabilidad:-carrera_contabilidad,
-	consultar('�Te gustaria trabajar en un Banco?'),
-	consultar('�Te gusta contar dinero?'),
-	consultar('�Te apasionan los negocios?'),
-        consultar('�Eres buen negociador?'),
-        consultar('�Tienes habilidad con los numeros y sacas cuenta con facilidad?').
+huawei_matebook:-computadora_huawei_matebook_d14,
+    consultar('¿Quieres una laptop?'),
+    consultar('¿Quieres un procesador Intel?'),
+    consultar('¿Quieres un almacenamiento de 512 GB?'),
+    consultar('¿Quieres que la pantalla se pueda desmontar?'),
+    consultar('¿Quieres que la cámara se encuentre al nivel del teclado?').
 
-administracion:-carrera_administracion,
-	consultar('�Eres bueno en la comunicacion continua?'),
-	consultar('�Eres bueno en el manejo de tiempos?'),
-	consultar('�Eres bueno para el pensamiento estrategico?'),
-	consultar('�Tienes capacidad de planificar?'),
-	consultar('�Te interesaria aprender ingles?').
-
-diseno:-carrera_diseno,
-         consultar('�Eres creativo?'),
-	consultar('�Eres bueno dibujando?'),
-	consultar('�Te gusta dise�ar arquitecturas artisticas?'),
-	consultar('�Eres bueno con software de edicion?'),
-	consultar('�Te gustan las pinturas?').
-
-derecho:-carrera_derecho,
-       consultar('�Tienes facilidad para argumentar?'),
-       consultar('�Tienes facilidad para la expresion oral?'),
-       consultar('�Tienes pasion por debatir?'),
-       consultar('�Tiene capacidad para lidiar con la incertidumbre?'),
-       consultar('�Te gusta la historia?').
-
-pedagogia:-carrera_pedagogia,
-       consultar('�Te gusta el aprendizaje didactico?'),
-       consultar('�Te agrada las actividades recreativas?'),
-       consultar('�Te gustaria crear modelos educativos que mejore la ense�anza de los profesores?'),
-       consultar('�Te gustaria diseñar material didactico?'),
-       consultar('�te interesa la psicologia educativa?').
-
-
-no_se_encontro_ninguna_carrera_adecuada_para_ti:- dynamic no_hay_una_carrera.
 
 
 %funcion de corte cada vez que se anula una pregunta de la carrera posteriormente mandara hacia la siguiente
 
-laptop_HP_14_dq2521la:-consultar('¿Quieres que tu computadora sea marca HP?'),!.
+computadora_laptop_HP_14_dq2521la:-consultar('¿Quieres una laptop?'),!.
+computadora_laptop_HP_ENVY_x360:-
+    consultar('¿Quieres una laptop?'),!.
+computadora_hp_desktop_one_21_ca0003la:-
+    consultar('¿Quieres una computadora de escritorio?'),!.
+computadora_all_in_one_hp_22_dd050la:-
+    consultar('¿Quieres una computadora de escritorio?'),!.
+computadora_huawei_matebook_d14:-
+    consultar('¿Quieres una laptop?'),!.
 carrera_ingenieria_de_sistemas:-consultar('�Eres h�bil resolviendo problemas?'),!.
 carrera_turismo:-consultar('�Tienes interes por otras culturas?'),!.
 carrera_contabilidad:-consultar('�Te gustaria trabajar en un Banco?'),!.
