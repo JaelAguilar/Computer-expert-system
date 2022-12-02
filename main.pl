@@ -92,6 +92,7 @@ new(Boton3,button('Carreras',and(message(@prolog,main2),
 
 % se muestra la respuesta de tu test que realizaste por medio de las preguntas
 % Muestra el texto indicado dependiendo de la carrera
+resultado('Laptop HP 14 dq2521la'):-hp_14_dq2521la,!.
 resultado('ingenierO de sistemas'):-ingenieria_de_sistemas,!.
 resultado(turismo):-turismo,!.
 resultado(contabilidad):-contabilidad,!.
@@ -103,6 +104,13 @@ resultado(no_se_encontro_ninguna_carrera_adecuada_para_ti).
 
 
 %se declran las variables de cada carrera y despues se colocan las preguntas coreespodientes
+
+% ==== COMPUTADORAS NUEVO SISTEMA ==== %
+hp_14_dq2521la:-laptop_HP_14_dq2521la,
+    consultar('¿Quieres que tu computadora sea marca HP?'),
+    consultar('¿Quieres un procesador Intel?')
+    consultar('¿Quieres un almacenamiento de 256 GB?').
+
 
 % ==== CARRERAS SISTEMA ORIGINAL ==== %
 ingenieria_de_sistemas:-carrera_ingenieria_de_sistemas,
@@ -160,6 +168,7 @@ no_se_encontro_ninguna_carrera_adecuada_para_ti:- dynamic no_hay_una_carrera.
 
 %funcion de corte cada vez que se anula una pregunta de la carrera posteriormente mandara hacia la siguiente
 
+laptop_HP_14_dq2521la:-consultar('¿Quieres que tu computadora sea marca HP?'),!.
 carrera_ingenieria_de_sistemas:-consultar('�Eres h�bil resolviendo problemas?'),!.
 carrera_turismo:-consultar('�Tienes interes por otras culturas?'),!.
 carrera_contabilidad:-consultar('�Te gustaria trabajar en un Banco?'),!.
