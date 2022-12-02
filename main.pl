@@ -23,7 +23,7 @@ imagen_portada(Pantalla, Imagen) :- agregar_imagen(Pantalla, Imagen, 0, 0).
 inicio:- %Inicio de nuestro programa, creando el objeto de dialogo con la variable D
 
 
- new(D,dialog('PIA',size(800,2350))),% inicio de nuestra interfaz pantallaResultado
+ new(D,dialog('PIA',size(500,625))),% inicio de nuestra interfaz pantallaResultado
 
 
 
@@ -46,10 +46,9 @@ new(Boton3,button('Carreras',and(message(@prolog,main2),
  send(Boton4,colour,blue),
 
 %llamada de los botones para que se muestren en la interfaz
- send(D,append(Boton1)),
- send(D,append(Bcancelar)),
-send(D,append(Boton3)),
-send(D,append(Boton4)),
+send(D, display,Boton1,point(100,550)),
+send(D, display,Bcancelar,point(210,550)),
+send(D, display,Boton3,point(320,550)),
   send(D,open_centered).
 
 
@@ -66,7 +65,7 @@ pantallaResultado:-
 		new(@respl,label(text,'')),
 	new(Salir,button('Salir',and(message(D2,destroy),message(D2,free)))),
 
-    new(Boton1,button('Pantalla Incio',and(message(@prolog,inicio),
+    new(Boton1,button('Portada',and(message(@prolog,inicio),
  and(message(D2,open),message(D2,free))))),
 
 new(Boton3,button('Carreras',and(message(@prolog,main2),
@@ -75,15 +74,15 @@ new(Boton3,button('Carreras',and(message(@prolog,main2),
 
 %creaci�n del boton para dar inicio al TEST.
 
-	new(@boton,button('INICIO',message(@prolog,botones))),
+	new(@boton,button('INICIAR',message(@prolog,botones))),
 
 	new(@btncarrera,button('analisis?')), %boton para iniciar el test
-	send(D2, display,@boton,point(500,200)), %Posición boton INICIO
+	send(D2, display,@boton,point(450,200)), %Posición boton INICIO
 
-	send(D2, display,@texto,point(350,150)), %Posición texto 
-	send(D2, display,Salir,point(500,330)),  %Posición botón SALIR
-    send(D2,display,Boton1,point(500,350)),
-    send(D2,display,Boton3,point(500,390)),
+	send(D2, display,@texto,point(350,170)), %Posición texto 
+	send(D2, display,Salir,point(350,370)),  %Posición botón SALIR
+    send(D2,display,Boton1,point(450,370)),
+    send(D2,display,Boton3,point(550,370)),
 	send(D2, display,@respl,point(400,200)), %Posición respuesta final
 	send(D2,open_centered).                 %fin de la funcion
 
@@ -229,9 +228,9 @@ new(D4, dialog('PIA',size(500,400))),
         new(Boton1,button('Pantalla Incio',and(message(@prolog,inicio),and(message(D4,open),message(D4,free))))),
         new(Boton3,button('De nuevo',and(message(@prolog,pantallaResultado),and(message(D4,open),message(D4,free))))),
 
-        send(D4,display,Boton1,point(400,450)),
-        send(D4,display,Boton3,point(400,430)),
-        send(D4, display,Salir,point(400,400)),
+        send(D4,display,Boton1,point(350,370)),
+        send(D4,display,Boton3,point(450,370)),
+        send(D4, display,Salir,point(550,370)),
 
   send(D4,open_centered).
 
