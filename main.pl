@@ -97,6 +97,9 @@ resultado('Laptop HP ENVY x360 Convertible 13-ay1005la'):-hp_envy_x360,!.
 resultado('HP Desktop One 27-ca0003la'):-hp_desktop_one,!.
 resultado('All in One HP 22-dd0520la'):-all_in_one_hp_22,!.
 resultado('HUAWEI MateBook D 14'):-huawei_matebook,!.
+resultado('Laptop gamer Legion 5 6ta Gen'):-gamer_legion_5,!.
+resultado('MacBook Pro de 13”'):-macbook_pro,!.
+resultado('Samsung Notebook 9 Pro'):-samsung_notebook_9_pro,!.
 resultado('Lo sentimos, no encontramos una computadora\n adecuada para ti').
 
 
@@ -115,6 +118,7 @@ hp_envy_x360:-computadora_laptop_HP_ENVY_x360,
     consultar('¿Quieres que tu computadora sea marca HP?'),
     consultar('¿Quieres un procesador AMD Ryzen?'),
     consultar('¿Quieres que tu computadora se pueda doblar como si fuera tablet?'),
+    consultar('¿Quieres que la pantalla sea táctil?'),
     consultar('¿Quieres que tu computadora tenga un lector de huellas?').
 
 hp_desktop_one:-computadora_hp_desktop_one_21_ca0003la,
@@ -127,7 +131,7 @@ all_in_one_hp_22:-computadora_all_in_one_hp_22_dd050la,
     consultar('¿Quieres una computadora de escritorio?'),
     consultar('¿Quieres que tu computadora sea marca HP?'),
     consultar('¿Quieres un procesador Intel?'),
-    consultar('¿Quieres que tu computadora sea "todo en uno"').
+    consultar('¿Quieres que tu computadora sea todo en uno').
 
 huawei_matebook:-computadora_huawei_matebook_d14,
     consultar('¿Quieres una laptop?'),
@@ -135,12 +139,29 @@ huawei_matebook:-computadora_huawei_matebook_d14,
     consultar('¿Quieres un almacenamiento de 512 GB?'),
     consultar('¿Quieres que la pantalla se pueda desmontar?'),
     consultar('¿Quieres que la cámara se encuentre al nivel del teclado?').
+gamer_legion_5:-computadora_laptop_gamer_5,
+    consultar('¿Quieres una laptop?'),
+    consultar('¿Quieres un procesador AMD Ryzen?'),
+    consultar('¿Quieres una computadora hecha para videojuegos?'),
+    consultar('¿Quieres que tu computadora tenga control de temperatura'),
+    consultar('¿Quieres que tu computadora tenga sonido 3D?').
+macbook_pro:-computadora_mackbook_pro,
+    consultar('¿Quieres una laptop?'),
+    consultar('¿Quieres que tu computadora sea marca Apple?').
+samsung_notebook_9_pro:-computadora_samsung_notebook_9_pro,
+    consultar('¿Quieres una laptop?'),
+    consultar('¿Quieres un procesador Intel?'),
+    consultar('¿Quieres que tu computadora sea 2 en 1?'),
+    consultar('¿Quieres que la pantalla sea táctil?'),
+    consultar('¿Quieres que tu computadora tenga un lector de huellas?'),
+    consultar('¿Quieres que incluya un lápiz táctil?').
 
 
 
 %funcion de corte cada vez que se anula una pregunta de la carrera posteriormente mandara hacia la siguiente
 
-computadora_laptop_HP_14_dq2521la:-consultar('¿Quieres una laptop?'),!.
+computadora_laptop_HP_14_dq2521la:-
+    consultar('¿Quieres una laptop?'),!.
 computadora_laptop_HP_ENVY_x360:-
     consultar('¿Quieres una laptop?'),!.
 computadora_hp_desktop_one_21_ca0003la:-
@@ -149,13 +170,11 @@ computadora_all_in_one_hp_22_dd050la:-
     consultar('¿Quieres una computadora de escritorio?'),!.
 computadora_huawei_matebook_d14:-
     consultar('¿Quieres una laptop?'),!.
-carrera_ingenieria_de_sistemas:-consultar('�Eres h�bil resolviendo problemas?'),!.
-carrera_turismo:-consultar('�Tienes interes por otras culturas?'),!.
-carrera_contabilidad:-consultar('�Te gustaria trabajar en un Banco?'),!.
-carrera_administracion:-consultar('�Eres bueno en la comunicacion continua?'),!.
-carrera_diseno:-consultar('¿Eres creativo?'),!.
-carrera_derecho:-consultar('¿Tienes facilidad para argumentar?'),!.
-carrera_pedagogia:-consultar('¿Te gusta el aprendizaje didactico?'),!.
+computadora_laptop_gamer_5:-
+    consultar('¿Quieres una laptop?'),!.
+computadora_mackbook_pro:-
+    consultar('¿Quieres una laptop?'),!.
+computadora_samsung_notebook_9_pro:-consultar('¿Quieres una laptop?'),!.
 
 
 
