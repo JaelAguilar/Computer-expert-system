@@ -3,10 +3,11 @@
 :-use_module(library(pce)). % libreria para que se muestre la interfaz
 :-use_module(library(pce_style_item)).% se ocupa para estilos de letra y colores
 :-pce_image_directory('./images'). % acceso a donde se tiene guardada la carpeta de la imagen
-:- dynamic color/2. %Numero de colores que se utilizan
-resource(pizarronutc, image, image('techWallpaper.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
-resource(li, image, image('comprarPC.jpg')).
+:- dynamic color/3. %Numero de colores que se utilizan
+resource(pizarronutc, image, image('fondoJuego.jpg')). % instruccion para cargar la imagen en la carpeta que esta almacenada .jpg
+resource(li, image, image('fondoInicio.jpg')).
 resource(descripcion, image, image('descripcion.jpg')).
+resource(minion,image,image('minion.jpg')).
 
 agregar_imagen(Pantalla, Imagen, X, Y):-new(Figura, figure),                  %variables y funciones que se utilizan para que se pueda visualizar la imagen mediante la  interfaz grafica con posición arbitraria
                                      new(Bitmap, bitmap(resource(Imagen),@on)),
@@ -22,92 +23,67 @@ imagen_portada(Pantalla, Imagen) :- agregar_imagen(Pantalla, Imagen, 0, 0).
 inicio:- %Inicio de nuestro programa, creando el objeto de dialogo con la variable D
 
 
-
- new(D,dialog('PIA',size(800,2350))),% inicio de nuestra interfaz principal
-
-
-new(Label1,label(text,'                    UNIVERSIDAD AUTÓNOMA DE NUEVO LEÓN')),% muestra texto dentro de los label
-
-	send(Label1,colour,red), %sirve para poner los colores en las letras
-new(Label2,label(text,'               FACULTAD DE INGENIERÍA MECÁNICA Y ELÉCTRICA')),
-	send(Label2,colour,red),
-new(Label3,label(text,'')),
-	send(Label3,colour,blue),
-new(Label4,label(text,'      Sistema experto de decisión de Computadoras')),
-	send(Label4,colour,blue),
-new(Label5,label(text,'¿Quieres una computadora y no sabes cuál es la indicada para ti?')),
-	send(Label5,colour,blue),
-new(Label6,label(text,'                       ¡Nosotros te ayudamos!')),
-	send(Label6,colour,green),
-new(Label7,label(text,'')),
-	send(Label7,colour,blue),
-new(Label8,label(text,'Da click en Iniciar y contesta las preguntas que aparecen en pantalla')),
-	send(Label8,colour,red),
+ new(D,dialog('PIA',size(800,2350))),% inicio de nuestra interfaz pantallaResultado
 
 
- %llama a los label y los adjunta para mostrarlos en la ventana principal
+
+ %llama a los label y los adjunta para mostrarlos en la ventana pantallaResultado
 imagen_portada(D, li),
- send(D,append(Label1)),
- send(D,append(Label2)),
- send(D,append(Label3)),
- send(D,append(Label4)),
- send(D,append(Label5)),
- send(D,append(Label6)),
- send(D,append(Label7)),
- send(D,append(Label8)),
  
 %crea el boton que almacenamos en nuestra variable para la funcion que se ha programado anteriormente
- new(Boton1,button('Iniciar',and(message(@prolog,principal),
+ new(Boton1,button('Iniciar',and(message(@prolog,pantallaResultado),
  and(message(D,open),message(D,free))))),
  send(Boton1,colour,blue),
  new(Bcancelar,button('Anular',and(message(D,destroy),message(D,free)))),
  send(Bcancelar,colour,blue),
 
- new(Boton2,button('Ayuda',and(message(@prolog,main1),
- and(message(D,open),message(D,free))))),
- send(Boton2,colour,blue),
-
 new(Boton3,button('Carreras',and(message(@prolog,main2),
  and(message(D,open),message(D,free))))),
  send(Boton3,colour,blue),
 
+ new(Boton4,button('Equipo',and(message(@prolog,main3),
+ and(message(D,open),message(D,free))))),
+ send(Boton4,colour,blue),
+
 %llamada de los botones para que se muestren en la interfaz
  send(D,append(Boton1)),
  send(D,append(Bcancelar)),
- send(D,append(Boton2)),
 send(D,append(Boton3)),
+send(D,append(Boton4)),
   send(D,open_centered).
 
 
-:-inicio.
 
-%llamando a la funcion principal de nuestro boton iniciar
+%llamando a la funcion pantallaResultado de nuestro boton iniciar
 
 
-principal:-
+pantallaResultado:-
 	new(D2, dialog('SISTEMA EXPERTO PC',size(500,400))), %inicio de nuestra interfaz emergente
-	new(Label10, label(nombre,'')),send(Label10,colour,red),%color de texto de la variable D2
-
         imagen_portada(D2, pizarronutc), % carga de imagen
 
 
-	new(@texto,label(text,'Podrás ver aquí tu resultado cuando respondas las preguntas')),
+	new(@texto,label(text,'')),
 		new(@respl,label(text,'')),
 	new(Salir,button('Salir',and(message(D2,destroy),message(D2,free)))),
 
+    new(Boton1,button('Pantalla Incio',and(message(@prolog,inicio),
+ and(message(D2,open),message(D2,free))))),
 
+new(Boton3,button('Carreras',and(message(@prolog,main2),
+ and(message(D2,open),message(D2,free))))),
 
 
 %creaci�n del boton para dar inicio al TEST.
 
 	new(@boton,button('INICIO',message(@prolog,botones))),
 
-	send(D2, append(Label10)),
 	new(@btncarrera,button('analisis?')), %boton para iniciar el test
-        send(D2, display,Label10,point(10,20)), %mostrar el contenido de nuestra ventana
 	send(D2, display,@boton,point(500,200)), %Posición boton INICIO
+
 	send(D2, display,@texto,point(350,150)), %Posición texto 
 	send(D2, display,Salir,point(500,330)),  %Posición botón SALIR
+    send(D2,display,Boton1,point(500,350)),
+    send(D2,display,Boton3,point(500,390)),
 	send(D2, display,@respl,point(400,200)), %Posición respuesta final
 	send(D2,open_centered).                 %fin de la funcion
 
@@ -218,7 +194,7 @@ preguntar(Problema):-new(A1,dialog('Pregunta')),
 
 	send(A1,default_button,si),
 	send(A1,open_centered), get(A1,confirm,Answer),
-	write(Answer), send(A1,destroy),
+	 send(A1,destroy),
 
 %confirmacion de respuesta si y no
 
@@ -241,60 +217,29 @@ botones:-borrado,
 resultado(Carrera),
 	send(@texto, selection('Deberías comprar la siguiente computadora:')),
 	send(@respl,selection(Carrera)),
-	new(@boton, button('Iniciar su evaluacion',message(@prolog, botones))),
-	send(Menu, display,@boton,point(40,600)),       %llamando los resultados de la ventana emergente
-	send(Menu, display,@btncarrera,point(20,50)),
-	send(Menu, append, new(Ayuda, popup(Ayuda))),
 	limpiar.
-
 borrado:-send(@respl,selection('')). %fin del programa
-
-%boton de textos para saber la guia basica
-main1:-
-	new(D3, dialog('SISTEMA EXPERTO UTC',size(500,400))),
-	new(Label10, label(nombre,'')),send(Label10,colour,red),
-
-        imagen_portada(D3, pizarronutc),
-
-
-	new(@texto,label(text,'                                      Guia basica para saber el guncionamiento de la pagina de prolog:')),
-         new(@texto1,label(text,'Este sistema est� dise�ado para interactuar e informar al usuario que desee saber informaci�n sobre la ')),
-	 new(@texto2,label(text,'Universidad Tres Culturas, adem�s de dar una orientaci�n sobre las carreras que se imparten en la')),
-         new(@texto3,label(text,'instituci�n tomando como base la toma de decisiones con respecto a los datos ingresados.')),
-	  new(@texto4,label(text,'Da clic en inicio y responde las preguntas que te aparecen en la interfaz')),
-          new(@texto5,label(text,'Contesta las preguntas de acuerdo con las habilidades y aptitudes que consideres tengas y pongas ')),
-          new(@texto6,label(text,'en pr�ctica.')),
-          new(@texto7,label(text,'Despu�s se te mostraran tus resultados de acuerdo a la carrera que consideremos m�s apta para ti')),
-          new(@texto8,label(text,'y despu�s presi�n salir. �')),
-		new(@respl,label(text,'')),
-	new(Salir,button('Salir',and(message(D3,destroy),message(D3,free)))),
-
-
-
-
-
-
-
-	send(D3, append(Label10)),
-	send(D3, display,Label10,point(10,20)),
-	send(D3, display,@texto,point(400,400)),
-        send(D3, display,@texto1,point(70,70)),
-        send(D3, display,@texto2,point(78,82)),
-        send(D3, display,@texto3,point(88,94)),
-        send(D3, display,@texto4,point(150,150)),
-        send(D3, display,@texto5,point(85,200)),
-        send(D3, display,@texto6,point(85,214)),
-        send(D3, display,@texto7,point(85,230)),
-        send(D3, display,@texto8,point(85,245)),
-	send(D3, display,Salir,point(400,400)),
-	send(D3, display,@respl,point(500,500)),
-	send(D3,open_centered).
 
 main2:-
 new(D4, dialog('PIA',size(500,400))),
 	new(Label11, label(nombre,'')),send(Label11,colour,red),
 
         imagen_portada(D4, descripcion),
+        new(Salir,button('Salir',and(message(D4,destroy),message(D4,free)))),
+        new(Boton1,button('Pantalla Incio',and(message(@prolog,inicio),and(message(D4,open),message(D4,free))))),
+        new(Boton3,button('De nuevo',and(message(@prolog,pantallaResultado),and(message(D4,open),message(D4,free))))),
+
+        send(D4,display,Boton1,point(400,450)),
+        send(D4,display,Boton3,point(400,430)),
+        send(D4, display,Salir,point(400,400)),
 
   send(D4,open_centered).
 
+main3:-
+    new(D5,dialog('Equipo', size(800,1000))),
+    imagen_portada(D5,minion),
+    new(Salir,button('Salir',and(message(D5,destroy),message(D5,free)))),
+        send(D5, display,Salir,point(400,400)),
+    send(D5,open_centered).
+
+:-inicio.
