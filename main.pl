@@ -49,7 +49,6 @@ main:-
 
 
 % ==== Mostrar el texto indicado dependiendo del resultado final ==== %
-resultado('Laptop HP 14 dq2521la'):-hp_14_dq2521la,!.
 resultado('Laptop HP ENVY x360 Convertible 13-ay1005la'):-hp_envy_x360,!.
 resultado('HP Desktop One 27-ca0003la'):-hp_desktop_one,!.
 resultado('All in One HP 22-dd0520la'):-all_in_one_hp_22,!.
@@ -57,17 +56,11 @@ resultado('HUAWEI MateBook D 14'):-huawei_matebook,!.
 resultado('Laptop gamer Legion 5 6ta Gen'):-gamer_legion_5,!.
 resultado('MacBook Pro de 13”'):-macbook_pro,!.
 resultado('Samsung Notebook 9 Pro'):-samsung_notebook_9_pro,!.
+resultado('Laptop HP 14 dq2521la'):-hp_14_dq2521la,!.
 resultado('Lo sentimos, no encontramos una computadora\n adecuada para ti').
 
 
 % ==== PREGUNTAS DE CADA COMPUTADORA ==== %
-hp_14_dq2521la:-
-    computadora_laptop_HP_14_dq2521la,
-    revisar('¿Quieres una laptop?'),
-    revisar('¿Quieres que tu computadora sea marca HP?'),
-    revisar('¿Quieres un procesador Intel?'),
-    revisar('¿Quieres un almacenamiento de 256 GB?').
-
 hp_envy_x360:-
     computadora_laptop_HP_ENVY_x360,
     revisar('¿Quieres una laptop?'),
@@ -121,10 +114,15 @@ samsung_notebook_9_pro:-
     revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
     revisar('¿Quieres que incluya un lápiz táctil?').
 
+hp_14_dq2521la:-
+    computadora_laptop_HP_14_dq2521la,
+    revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres que tu computadora sea marca HP?'),
+    revisar('¿Quieres un procesador Intel?'),
+    revisar('¿Quieres que la batería tenga larga duración').
 
-% ==== PRUEBAS DE CADA COMPUTADORA (función de corte) ==== %
-computadora_laptop_HP_14_dq2521la:-
-    revisar('¿Quieres una laptop?'),!.
+
+% ==== PRUEBAS DE CADA COMPUTADORA ==== %
 computadora_laptop_HP_ENVY_x360:-
     revisar('¿Quieres una laptop?'),!.
 computadora_hp_desktop_one_21_ca0003la:-
@@ -138,6 +136,8 @@ computadora_laptop_gamer_5:-
 computadora_mackbook_pro:-
     revisar('¿Quieres una laptop?'),!.
 computadora_samsung_notebook_9_pro:-
+    revisar('¿Quieres una laptop?'),!.
+computadora_laptop_HP_14_dq2521la:-
     revisar('¿Quieres una laptop?'),!.
 
 
