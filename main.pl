@@ -24,8 +24,8 @@ iniciar:-
     new(Biniciar,button('Iniciar',and(message(@prolog,main),and(message(D,open),message(D,free))))),
     new(Bcancelar,button('Salir',and(message(D,destroy),message(D,free)))),
 
-    send(D, display,Biniciar,point(100,550)),
-    send(D, display,Bcancelar,point(210,550)),
+    send(D, display,Biniciar,point(150,550)),
+    send(D, display,Bcancelar,point(250,550)),
     send(D,open_centered).
 
 
@@ -42,8 +42,8 @@ main:-
 
 	send(D2, display,@boton,point(450,200)), 
 	send(D2, display,@texto,point(350,170)), 
-	send(D2, display,Bsalir,point(350,370)), 
-    send(D2,display,Bportada,point(450,370)),
+	send(D2, display,Bsalir,point(400,370)), 
+    send(D2,display,Bportada,point(500,370)),
 	send(D2, display,@respl,point(350,200)), 
 	send(D2,open_centered).                
 
