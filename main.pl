@@ -49,23 +49,24 @@ ventanaJuego:-
 
 
 % ==== Mostrar el texto indicado dependiendo del resultado final ==== %
+% El orden en el que aparece aquí es el orden en el que serán revisadas al momento de realizar las preguntas %
+resultado('Laptop HP 14 dq2521la'):-hp_14_dq2521la,!.
 resultado('Laptop HP ENVY x360 Convertible 13-ay1005la'):-hp_envy_x360,!.
-resultado('HP Desktop One 27-ca0003la'):-hp_desktop_one,!.
-resultado('All in One HP 22-dd0520la'):-all_in_one_hp_22,!.
-resultado('HUAWEI MateBook D 14'):-huawei_matebook,!.
+resultado('Lenovo ThinkPad T14'):-lenovo_ThinkPad_T14,!.
+resultado('Lenovo IdeaCentre AIO 3i 7ma Gen'):-lenovo_ideaCentre_AIO,!.
+resultado('Lenovo IdeaPad 3 15" 6ta Gen - Sand'):-lenovo_ideapad,!.
 resultado('Laptop gamer Legion 5 6ta Gen'):-gamer_legion_5,!.
+resultado('HUAWEI MateBook D 14'):-huawei_matebook,!.
 resultado('MacBook Pro de 13”'):-macbook_pro,!.
 resultado('Samsung Notebook 9 Pro'):-samsung_notebook_9_pro,!.
-resultado('Laptop HP 14 dq2521la'):-hp_14_dq2521la,!.
-resultado('Lenovo IdeaPad 3 15" 6ta Gen - Sand'):-lenovo_ideapad,!.
-resultado('Lenovo IdeaCentre AIO 3i 7ma Gen'):-lenovo_ideaCentre_AIO,!.
-resultado('Lenovo ThinkPad T14'):-lenovo_ThinkPad_T14,!.
 resultado('Laptop Dell Inspiron 13 5310'):-laptop_dell_inspiron_13,!.
-resultado('Lo sentimos, no encontramos una computadora\n adecuada para ti').
+resultado('All in One HP 22-dd0520la'):-all_in_one_hp_22,!.
+resultado('HP Desktop One 27-ca0003la'):-hp_desktop_one,!.
+resultado('Lo sentimos, no encontramos una computadora\nadecuada para ti').
 
 
 % ==== BASE DE CONOCIMIENTO ==== %
-% === ORDEN  DE PREGUNTAS === %
+% ORDEN  DE PREGUNTAS %
 % - Laptop o escritorio
 % - Marca de computadora
 % - Procesador
@@ -79,9 +80,9 @@ hp_envy_x360:-
     revisar('¿Quieres un procesador AMD Ryzen?'),
     revisar('¿Quieres un almacenamiento de 512 GB?'),
     revisar('¿Quieres una memoria RAM de 8GB'),
-    revisar('¿Quieres que tu computadora se pueda doblar como si fuera tablet?'),
-    revisar('¿Quieres que la pantalla sea táctil?'),
     revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
+    revisar('¿Quieres que la pantalla sea táctil?'),
+    revisar('¿Quieres que tu computadora se pueda doblar como si fuera tablet?'),
     revisar('¿Es $28,500 un buen precio para ti?').
 
 hp_desktop_one:-
@@ -122,8 +123,8 @@ gamer_legion_5:-
     revisar('¿Quieres un procesador AMD Ryzen?'),
     revisar('¿Quieres un almacenamiento de 512 GB?'),
     revisar('¿Quieres una memoria RAM de 16GB?'),
-    revisar('¿Quieres una computadora hecha para videojuegos?'),
     revisar('¿Quieres que tu computadora tenga control de temperatura?'),
+    revisar('¿Quieres una computadora hecha para videojuegos?'),
     revisar('¿Quieres que tu computadora tenga sonido 3D?'),
     revisar('¿Es $28,000 un buen precio para ti?').
 
@@ -144,9 +145,9 @@ samsung_notebook_9_pro:-
     revisar('¿Quieres un procesador Intel?'),
     revisar('¿Quieres un almacenamiento de 256 GB?'),
     revisar('¿Quieres una memoria RAM de 8GB?'),
-    revisar('¿Quieres que tu computadora sea 2 en 1?'),
-    revisar('¿Quieres que la pantalla sea táctil?'),
     revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
+    revisar('¿Quieres que la pantalla sea táctil?'),
+    revisar('¿Quieres que tu computadora sea 2 en 1?'),
     revisar('¿Quieres que incluya un lápiz táctil?'),
     revisar('¿Es $25,000 un buen precio para ti?').
 
@@ -169,8 +170,8 @@ lenovo_ideapad:-
     revisar('¿Quieres una memoria RAM de 16GB?'),
     revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
     revisar('¿Quieres que la pantalla sea táctil?'),
-    revisar('¿Es $18,000 un buen precio para ti?'),
-    revisar('¿Quieres que tu computadora tenga control de temperatura?').
+    revisar('¿Quieres que tu computadora tenga control de temperatura?'),
+    revisar('¿Es $18,000 un buen precio para ti?').
 
 lenovo_ideaCentre_AIO:-
     computadora_lenovo_ideaCentre_AIO,
@@ -190,7 +191,7 @@ lenovo_ThinkPad_T14:-
     revisar('¿Quieres un almacenamiento de 512 GB?'),
     revisar('¿Quieres una memoria RAM de 8GB?'),
     revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
-    revisar('¿Quieres que tu computadora tenga una alta duabilidad?'),
+    revisar('¿Quieres que tu computadora tenga una alta durabilidad?'),
     revisar('¿Es $20,000 un buen precio para ti?').
 
 laptop_dell_inspiron_13:-
