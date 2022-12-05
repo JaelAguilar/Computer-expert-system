@@ -64,8 +64,8 @@ resultado('Laptop Dell Inspiron 13 5310'):-laptop_dell_inspiron_13,!.
 resultado('Lo sentimos, no encontramos una computadora\n adecuada para ti').
 
 
-% ==== PREGUNTAS DE CADA COMPUTADORA ==== %
-% === ORDEN === %
+% ==== BASE DE CONOCIMIENTO ==== %
+% === ORDEN  DE PREGUNTAS === %
 % - Laptop o escritorio
 % - Marca de computadora
 % - Procesador
