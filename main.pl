@@ -61,65 +61,102 @@ resultado('Lo sentimos, no encontramos una computadora\n adecuada para ti').
 
 
 % ==== PREGUNTAS DE CADA COMPUTADORA ==== %
+% === ORDEN === %
+% - Laptop o escritorio
+% - Marca de computadora
+% - Procesador
+% - Almacenamiento
+% - Características específicas
+% - Precio
 hp_envy_x360:-
     computadora_laptop_HP_ENVY_x360,
     revisar('¿Quieres una laptop?'),
     revisar('¿Quieres que tu computadora sea marca HP?'),
     revisar('¿Quieres un procesador AMD Ryzen?'),
+    revisar('¿Quieres un almacenamiento de 512 GB?'),
+    revisar('¿Quieres una memoria RAM de 8GB'),
     revisar('¿Quieres que tu computadora se pueda doblar como si fuera tablet?'),
     revisar('¿Quieres que la pantalla sea táctil?'),
-    revisar('¿Quieres que tu computadora tenga un lector de huellas?').
+    revisar('¿Quieres que tu computadora tenga un lector de huellas?')
+    revisar('¿Es $28,500 un buen precio para ti?').
 
 hp_desktop_one:-
     computadora_hp_desktop_one_21_ca0003la,
     revisar('¿Quieres una computadora de escritorio?'),
     revisar('¿Quieres que tu computadora sea marca HP?'),
     revisar('¿Quieres un procesador AMD Ryzen?'),
-    revisar('¿Quieres que la cámara tenga privacidad cuando no la usas?').
+    revisar('¿Quieres un almacenamiento de 256 GB?'),
+    revisar('¿Quieres una memoria RAM de 8GB?'),
+    revisar('¿Quieres que la cámara tenga privacidad cuando no la usas?'),
+    revisar('¿Es $19,000 un buen precio para ti?').
 
 all_in_one_hp_22:-
     computadora_all_in_one_hp_22_dd050la,
     revisar('¿Quieres una computadora de escritorio?'),
     revisar('¿Quieres que tu computadora sea marca HP?'),
     revisar('¿Quieres un procesador Intel?'),
-    revisar('¿Quieres que tu computadora sea todo en uno').
+    revisar('¿Quieres un almacenamiento de 1 TB?'),
+    revisar('¿Quieres una memoria RAM de 4GB?'),
+    revisar('¿Quieres que tu computadora sea todo en uno?'),
+    revisar('¿Es $12,000 un buen precio para ti?').
 
 huawei_matebook:-
     computadora_huawei_matebook_d14,
     revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres que tu computadora sea marca HUAWEI?'),
     revisar('¿Quieres un procesador Intel?'),
     revisar('¿Quieres un almacenamiento de 512 GB?'),
+    revisar('¿Quieres una memoria RAM de 8GB?'),
     revisar('¿Quieres que la pantalla se pueda desmontar?'),
-    revisar('¿Quieres que la cámara se encuentre al nivel del teclado?').
+    revisar('¿Quieres que la cámara se encuentre al nivel del teclado?'),
+    revisar('¿Es $21,000 un buen precio para ti?').
 
 gamer_legion_5:-
     computadora_laptop_gamer_5,
     revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres que tu computadora sea marca Lenovo?'),
     revisar('¿Quieres un procesador AMD Ryzen?'),
+    revisar('¿Quieres un almacenamiento de 512 GB?'),
+    revisar('¿Quieres una memoria RAM de 16GB?'),
     revisar('¿Quieres una computadora hecha para videojuegos?'),
-    revisar('¿Quieres que tu computadora tenga control de temperatura'),
-    revisar('¿Quieres que tu computadora tenga sonido 3D?').
+    revisar('¿Quieres que tu computadora tenga control de temperatura?'),
+    revisar('¿Quieres que tu computadora tenga sonido 3D?'),
+    revisar('¿Es $28,000 un buen precio para ti?').
 
 macbook_pro:-
     computadora_mackbook_pro,
     revisar('¿Quieres una laptop?'),
-    revisar('¿Quieres que tu computadora sea marca Apple?').
+    revisar('¿Quieres que tu computadora sea marca Apple?'),
+    revisar('¿Quieres un almacenamiento de 512 GB?'),
+    revisar('¿Quieres una memoria RAM de 8GB?'),
+    revisar('¿Quieres que la pantalla sea táctil?'),
+    revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
+    revisar('¿Es $32,500 un buen precio para ti?').
 
 samsung_notebook_9_pro:-
     computadora_samsung_notebook_9_pro,
     revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres que tu computadora sea marca Samsung?')
     revisar('¿Quieres un procesador Intel?'),
+    revisar('¿Quieres un almacenamiento de 256 GB?'),
+    revisar('¿Quieres una memoria RAM de 8GB?')
     revisar('¿Quieres que tu computadora sea 2 en 1?'),
     revisar('¿Quieres que la pantalla sea táctil?'),
     revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
-    revisar('¿Quieres que incluya un lápiz táctil?').
+    revisar('¿Quieres que incluya un lápiz táctil?'),
+    revisar('¿Es $25,000 un buen precio para ti?').
 
 hp_14_dq2521la:-
     computadora_laptop_HP_14_dq2521la,
     revisar('¿Quieres una laptop?'),
     revisar('¿Quieres que tu computadora sea marca HP?'),
     revisar('¿Quieres un procesador Intel?'),
-    revisar('¿Quieres que la batería tenga larga duración').
+    revisar('¿Quieres un almacenamiento de 256 GB?'),
+    revisar('¿Quieres una memoria RAM de 8GB?')
+    revisar('¿Quieres que la batería tenga larga duración?'),
+    revisar('¿Es $12,000 un buen precio para ti?').
+
+
 
 
 % ==== PRUEBAS DE CADA COMPUTADORA ==== %
