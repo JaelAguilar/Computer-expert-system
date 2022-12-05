@@ -57,6 +57,10 @@ resultado('Laptop gamer Legion 5 6ta Gen'):-gamer_legion_5,!.
 resultado('MacBook Pro de 13”'):-macbook_pro,!.
 resultado('Samsung Notebook 9 Pro'):-samsung_notebook_9_pro,!.
 resultado('Laptop HP 14 dq2521la'):-hp_14_dq2521la,!.
+resultado('Lenovo IdeaPad 3 15" 6ta Gen - Sand'):-lenovo_ideapad,!.
+resultado('Lenovo IdeaCentre AIO 3i 7ma Gen'):-lenovo_ideaCentre_AIO,!.
+resultado('Lenovo ThinkPad T14'):-lenovo_ThinkPad_T14,!.
+resultado('Laptop Dell Inspiron 13 5310'):-laptop_dell_inspiron_13,!.
 resultado('Lo sentimos, no encontramos una computadora\n adecuada para ti').
 
 
@@ -156,7 +160,48 @@ hp_14_dq2521la:-
     revisar('¿Quieres que la batería tenga larga duración?'),
     revisar('¿Es $12,000 un buen precio para ti?').
 
+lenovo_ideapad:-
+    computadora_lenovo_ideapad_3,
+    revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres que tu computadora sea marca Lenovo?'),
+    revisar('¿Quieres un procesador AMD Ryzen?'),
+    revisar('¿Quieres un almacenamiento de 512 GB?'),
+    revisar('¿Quieres una memoria RAM de 16GB?'),
+    revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
+    revisar('¿Quieres que la pantalla sea táctil?'),
+    revisar('¿Es $18,000 un buen precio para ti?'),
+    revisar('¿Quieres que tu computadora tenga control de temperatura?').
 
+lenovo_ideaCentre_AIO:-
+    computadora_lenovo_ideaCentre_AIO,
+    revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres que tu computadora sea marca Lenovo?'),
+    revisar('¿Quieres un procesador Intel?'),
+    revisar('¿Quieres un almacenamiento de 512 GB?'),
+    revisar('¿Quieres una memoria RAM de 8GB?'),
+    revisar('¿Quieres que tu computadora sea todo en uno?'),
+    revisar('¿Es $19,000 un buen precio para ti?').
+
+lenovo_ThinkPad_T14:-
+    computadora_lenovo_ThinkPad_T14,
+    revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres que tu computadora sea marca Lenovo?'),
+    revisar('¿Quieres un procesador Intel?'),
+    revisar('¿Quieres un almacenamiento de 512 GB?'),
+    revisar('¿Quieres una memoria RAM de 8GB?'),
+    revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
+    revisar('¿Quieres que tu computadora tenga una alta duabilidad?'),
+    revisar('¿Es $20,000 un buen precio para ti?').
+
+laptop_dell_inspiron_13:-
+    computadora_Dell_inspiron_13_5310,
+    revisar('¿Quieres una laptop?'),
+    revisar('¿Quieres que tu computadora sea marca Dell?'),
+    revisar('¿Quieres un procesador Intel?'),
+    revisar('¿Quieres un almacenamiento de 512 GB?'),
+    revisar('¿Quieres una memoria RAM de 8GB?'),
+    revisar('¿Quieres que la batería tenga larga duración?'),
+    revisar('¿Es $29,500 un buen precio para ti?').
 
 
 % ==== PRUEBAS DE CADA COMPUTADORA ==== %
@@ -175,6 +220,14 @@ computadora_mackbook_pro:-
 computadora_samsung_notebook_9_pro:-
     revisar('¿Quieres una laptop?'),!.
 computadora_laptop_HP_14_dq2521la:-
+    revisar('¿Quieres una laptop?'),!.
+computadora_lenovo_ideapad_3:-
+    revisar('¿Quieres una laptop?'),!.
+computadora_lenovo_ideaCentre_AIO:-
+    revisar('¿Quieres una laptop?'),!.
+computadora_lenovo_ThinkPad_T14:-
+    revisar('¿Quieres una laptop?'),!.
+computadora_Dell_inspiron_13_5310:-
     revisar('¿Quieres una laptop?'),!.
 
 
