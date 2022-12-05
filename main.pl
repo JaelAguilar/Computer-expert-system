@@ -81,7 +81,7 @@ hp_envy_x360:-
     revisar('¿Quieres una memoria RAM de 8GB'),
     revisar('¿Quieres que tu computadora se pueda doblar como si fuera tablet?'),
     revisar('¿Quieres que la pantalla sea táctil?'),
-    revisar('¿Quieres que tu computadora tenga un lector de huellas?')
+    revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
     revisar('¿Es $28,500 un buen precio para ti?').
 
 hp_desktop_one:-
@@ -140,10 +140,10 @@ macbook_pro:-
 samsung_notebook_9_pro:-
     computadora_samsung_notebook_9_pro,
     revisar('¿Quieres una laptop?'),
-    revisar('¿Quieres que tu computadora sea marca Samsung?')
+    revisar('¿Quieres que tu computadora sea marca Samsung?'),
     revisar('¿Quieres un procesador Intel?'),
     revisar('¿Quieres un almacenamiento de 256 GB?'),
-    revisar('¿Quieres una memoria RAM de 8GB?')
+    revisar('¿Quieres una memoria RAM de 8GB?'),
     revisar('¿Quieres que tu computadora sea 2 en 1?'),
     revisar('¿Quieres que la pantalla sea táctil?'),
     revisar('¿Quieres que tu computadora tenga un lector de huellas?'),
@@ -156,7 +156,7 @@ hp_14_dq2521la:-
     revisar('¿Quieres que tu computadora sea marca HP?'),
     revisar('¿Quieres un procesador Intel?'),
     revisar('¿Quieres un almacenamiento de 256 GB?'),
-    revisar('¿Quieres una memoria RAM de 8GB?')
+    revisar('¿Quieres una memoria RAM de 8GB?'),
     revisar('¿Quieres que la batería tenga larga duración?'),
     revisar('¿Es $12,000 un buen precio para ti?').
 
