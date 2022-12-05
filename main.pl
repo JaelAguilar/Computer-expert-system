@@ -21,7 +21,7 @@ imagen_portada(Pantalla, Imagen):-
 iniciar:-
     new(D,dialog('PIA',size(500,625))),
     imagen_portada(D, portada),
-    new(Biniciar,button('Iniciar',and(message(@prolog,main),and(message(D,open),message(D,free))))),
+    new(Biniciar,button('Iniciar',and(message(@prolog,ventanaJuego),and(message(D,open),message(D,free))))),
     new(Bcancelar,button('Salir',and(message(D,destroy),message(D,free)))),
 
     send(D, display,Biniciar,point(150,550)),
@@ -30,7 +30,7 @@ iniciar:-
 
 
 % ==== INTERFAZ PRINCIPAL ==== %
-main:-
+ventanaJuego:-
 	new(D2, dialog('SISTEMA EXPERTO PC',size(500,400))),
     imagen_portada(D2, background),
 	new(@texto,label(text,'')),
