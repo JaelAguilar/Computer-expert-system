@@ -1,7 +1,6 @@
 % ==== DESCARGA DE MÓDULOS E IMÁGENES ==== %
-:- encoding(utf8). 
+:-encoding(utf8). 
 :-use_module(library(pce)).
-:-use_module(library(pce_style_item)).
 :-pce_image_directory('./images'). 
 resource(background, image, image('fondoJuego.jpg')). 
 resource(portada, image, image('fondoInicio.jpg')).
